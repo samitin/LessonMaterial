@@ -38,7 +38,7 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
     
     fun appendItem(){
         data.add(genereteItem())
-        notifyDataSetChanged()
+        notifyItemInserted(itemCount-1)
     }
 
     private fun genereteItem()= Data("Mars","")
@@ -55,11 +55,11 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
         }
         private fun addItem(){
             data.add(layoutPosition,genereteItem())
-            notifyDataSetChanged()
+            notifyItemInserted(layoutPosition)
         }
         private fun remove(){
             data.removeAt(layoutPosition)
-            notifyDataSetChanged()
+            notifyItemRemoved(layoutPosition)
         }
     }
     inner class EarthViewHolder(view:View): BaseViewHolder(view){
