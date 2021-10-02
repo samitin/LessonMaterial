@@ -1,0 +1,191 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent_settings_conteiner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/play_pause_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/play_pause_circle"
+        android:backgroundTint="@color/colorAccent"
+        android:checked="true"
+        android:contentDescription="@null"
+        android:thumb="@null" />
+
+    <include
+        android:id="@+id/includeChips"
+        layout="@layout/include_chips" />
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/heading_text_style"
+        android:text="@string/text_veiw_text" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_theme_main"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/metroplex_shadow"
+            android:layout_marginStart="@dimen/startMarginRowContent"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="@string/main_theme_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_theme_orange"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/startMarginRowContent"
+            android:backgroundTint="@color/colorAccentOrange"
+            android:text="@string/btn_orange_theme_text" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_theme_green"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/startMarginRowContent"
+            android:backgroundTint="@color/colorAccentGreen"
+            android:text="@string/btn_green_theme_text" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/secondRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/startMarginRowContent"
+        android:layout_marginTop="@dimen/topMarginRowContent"
+        android:layout_marginEnd="@dimen/endMarginRowContent"
+        android:orientation="horizontal">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabsSnake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/startMarginRowContent"
+            android:layout_marginTop="@dimen/topMarginRowContent"
+            android:layout_marginEnd="@dimen/endMarginRowContent">
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab 1" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab 2" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tab 3" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/startMarginRowContent"
+        android:layout_marginTop="@dimen/topMarginRowContent"
+        android:layout_marginEnd="@dimen/endMarginRowContent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button"
+            android:id="@+id/btn_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="default" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetLeft="10dp"
+            android:text="outlined" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:insetLeft="10dp"
+            android:text="outlined" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/startMarginRowContent"
+        android:layout_marginTop="@dimen/topMarginRowContent"
+        android:layout_marginEnd="@dimen/endMarginRowContent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unelevated" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unelevated" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton.Dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Unelevated" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/startMarginRowContent"
+        android:layout_marginTop="@dimen/topMarginRowContent"
+        android:layout_marginEnd="@dimen/endMarginRowContent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="20dp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/startMarginRowContent"
+        android:layout_marginTop="@dimen/topMarginRowContent"
+        android:layout_marginEnd="@dimen/endMarginRowContent"
+        android:layout_marginBottom="@dimen/topMarginRowContent"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:menu="@menu/menu_bottom_navigation" />
+    </LinearLayout>
+</LinearLayout>

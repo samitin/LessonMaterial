@@ -1,0 +1,110 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="ThemeMain" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="android:forceDarkAllowed">true</item>.
+
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="bottomAppBarStyle">@style/bottomAppBarStyleMain</item>
+    </style>
+    <style name="CustomOutlineBox" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="counterEnabled">true</item>
+        <item name="counterMaxLength">5</item>
+        <item name="boxStrokeColor">@color/green</item>
+        <item name="boxStrokeErrorColor">@color/red</item>
+        <item name="counterOverflowTextColor">@color/red</item>
+        <item name="endIconMode">custom</item>
+        <item name="endIconDrawable">@drawable/ic_wikipedia</item>
+    </style>
+    <style name="bottomAppBarStyleMain">
+        <item name="backgroundTint">@color/colorSecondaryGreen</item>
+    </style>
+    <style name="heading_text_style">
+        <item name="android:textColor">@color/heading_colour</item>
+        <item name="android:textSize">@dimen/heading_size</item>
+        <item name="android:layout_marginLeft">@dimen/heading_margin_left</item>
+        <item name="android:background">@color/chipBackgroundColor</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    <style name="orangeTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryOrange</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkOrange</item>
+        <item name="colorAccent">@color/colorAccentOrange</item>
+        <item name="colorSecondary">@color/colorSecondaryOrange</item>
+        <item name="bottomAppBarStyle">@style/bottomAppBarStyleOrange</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryOrange</item>
+    </style>
+    <style name="bottomAppBarStyleOrange">
+        <item name="backgroundTint">@color/colorSecondaryOrange</item>
+    </style>
+
+    <style name="greenTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimaryGreen</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDarkGreen</item>
+        <item name="colorAccent">@color/colorAccentGreen</item>
+        <item name="colorSecondary">@color/colorSecondaryGreen</item>
+        <item name="bottomAppBarStyle">@style/bottomAppBarStyleGreen</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/textColorSecondaryGreen</item>
+    </style>
+    <style name="bottomAppBarStyleGreen">
+        <item name="backgroundTint">@color/colorSecondaryGreen</item>
+    </style>
+    <style name="weatherTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/margin_text_weather</item>
+        <item name="android:layout_marginEnd">@dimen/margin_text_weather</item>
+        <item name="android:layout_marginTop">@dimen/margin_text_weather</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+    <style name="ToolBarWithNavigationBack">
+        <item name="navigationIcon">@drawable/abc_ic_ab_back_material</item>
+    </style>
+    <style name="TextComponent"/>
+
+    <style name="TextComponent.ItemRow">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
+    <style name="TextComponent.ItemRow.Selectable">
+        <item name="android:background">?android:attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+
+
+
+    <style name="TextAppearance" parent="TextAppearance.AppCompat"/>
+    <style name="TextAppearance.Header">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?colorAccent</item>
+    </style>
+
+    <style name="TextAppearance.ItemExample">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#5f5f5f</item>
+    </style>
+    <style name="CollapsingTextAppearance" parent="Base.TextAppearance.AppCompat.Widget.ActionBar.Title"/>
+    <style name="CollapsingTextAppearance.Inverse" >
+        <item name="android:textSize">30sp</item>
+    </style>
+</resources>
