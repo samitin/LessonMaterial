@@ -21,6 +21,7 @@ class RecyclerActivity : AppCompatActivity() {
             Data("Earth"),
             Data("Mars", null)
         )
+        data.add(0,Data("Header"))
 
         val recycler=findViewById<RecyclerView>(R.id.recyclerView)
         recycler.adapter=RecyclerActivityAdapter(
