@@ -14,9 +14,9 @@ class RecyclerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_recycler)
 
         val data = arrayListOf(
-            Data("Mars", "")
+            Pair(Data("Mars", ""),false)
         )
-        data.add(0,Data("Header"))
+        data.add(0,Pair(Data("Mars", ""),false))
 
         val recycler=findViewById<RecyclerView>(R.id.recyclerView)
 

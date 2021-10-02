@@ -8,7 +8,7 @@ import ru.samitin.lessonmaterial.R
 import ru.samitin.lessonmaterial.databinding.ActivityRecyclerItemEarthBinding
 import ru.samitin.lessonmaterial.databinding.ActivityRecyclerItemMarsBinding
 
-class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClickListener,private var data: MutableList<Data>):RecyclerView.Adapter<BaseViewHolder>() {
+class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClickListener,private var data: MutableList<Pair<Data, Boolean>>):RecyclerView.Adapter<BaseViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -31,7 +31,7 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
     override fun getItemViewType(position: Int): Int {
         return when {
             position==0 -> TYPE_HEADER
-            data[position].someDescription.isNullOrBlank() -> TYPE_MARS
+            data[position].first.someDescription.isNullOrBlank() -> TYPE_MARS
            else-> TYPE_EARTH
         }
     }
@@ -41,20 +41,28 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
         notifyItemInserted(itemCount-1)
     }
 
-    private fun genereteItem()= Data("Mars","")
+    private fun genereteItem()= Pair(Data("Mars",""),false)
 
     inner class MarsViewHolder(view:View): BaseViewHolder(view){
-        override fun bind(data:Data){
+        override fun bind(data:Pair<Data, Boolean>){
             if(layoutPosition!=RecyclerView.NO_POSITION){
                 ActivityRecyclerItemMarsBinding.bind(itemView).apply {
-                    marsImageView.setOnClickListener{ onListItemClickListener.onItemClick(data) }
+                    marsImageView.setOnClickListener{ onListItemClickListener.onItemClick(data.first) }
                     addItemImageView.setOnClickListener{addItem()}
                     removeItemImageView.setOnClickListener{remove()}
                     moveItemUp.setOnClickListener{moveItemUp()}
                     moveItemDown.setOnClickListener{moveItemDown()}
+                    marsDescriptionTextView.visibility=if (data.second)View.VISIBLE else View.GONE
+                    marsTextView.setOnClickListener{toggleText()}
                 }
             }
         }
+
+        private fun toggleText() {
+            data[layoutPosition]=data[layoutPosition].let { it.first to !it.second }
+            notifyItemChanged(layoutPosition)
+        }
+
         private fun moveItemDown(){
             layoutPosition.takeIf { it < data.size - 1 }?.also { currentPosition ->
                 data.removeAt(currentPosition).apply {
@@ -81,12 +89,12 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
         }
     }
     inner class EarthViewHolder(view:View): BaseViewHolder(view){
-        override fun bind(data:Data){
+        override fun bind(data:Pair<Data, Boolean>){
             if (layoutPosition!=RecyclerView.NO_POSITION){
                 ActivityRecyclerItemEarthBinding.bind(itemView).apply {
-                    descriptionTextView.text=data.someDescription
+                    descriptionTextView.text=data.first.someDescription
                     wikiImageView.setOnClickListener{
-                        onListItemClickListener.onItemClick(data)
+                        onListItemClickListener.onItemClick(data.first)
                     }
                 }
             }
@@ -94,9 +102,9 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
     }
 
     inner class HeaderViewHolder(view:View):BaseViewHolder(view){
-        override fun bind(data:Data){
+        override fun bind(data:Pair<Data, Boolean>){
             itemView.setOnClickListener {
-                onListItemClickListener.onItemClick(data)
+                onListItemClickListener.onItemClick(data.first)
             }
         }
     }
