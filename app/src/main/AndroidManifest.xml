@@ -20,6 +20,7 @@
         <activity
             android:name=".ui.api.ApiBottomActivity"
             android:exported="true" />
+        <activity android:name="recyclerview.RecyclerActivity"/>
         <activity android:name=".view.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
