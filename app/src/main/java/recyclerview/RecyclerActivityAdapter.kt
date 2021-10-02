@@ -8,7 +8,7 @@ import ru.samitin.lessonmaterial.R
 import ru.samitin.lessonmaterial.databinding.ActivityRecyclerItemEarthBinding
 import ru.samitin.lessonmaterial.databinding.ActivityRecyclerItemMarsBinding
 
-class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClickListener,private var data: List<Data>):RecyclerView.Adapter<BaseViewHolder>() {
+class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClickListener,private var data: MutableList<Data>):RecyclerView.Adapter<BaseViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -35,7 +35,33 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
            else-> TYPE_EARTH
         }
     }
+    
+    fun appendItem(){
+        data.add(genereteItem())
+        notifyDataSetChanged()
+    }
 
+    private fun genereteItem()= Data("Mars","")
+
+    inner class MarsViewHolder(view:View): BaseViewHolder(view){
+        override fun bind(data:Data){
+            if(layoutPosition!=RecyclerView.NO_POSITION){
+                ActivityRecyclerItemMarsBinding.bind(itemView).apply {
+                    marsImageView.setOnClickListener{ onListItemClickListener.onItemClick(data) }
+                    addItemImageView.setOnClickListener{addItem()}
+                    removeItemImageView.setOnClickListener{remove()}
+                }
+            }
+        }
+        private fun addItem(){
+            data.add(layoutPosition,genereteItem())
+            notifyDataSetChanged()
+        }
+        private fun remove(){
+            data.removeAt(layoutPosition)
+            notifyDataSetChanged()
+        }
+    }
     inner class EarthViewHolder(view:View): BaseViewHolder(view){
         override fun bind(data:Data){
             if (layoutPosition!=RecyclerView.NO_POSITION){
@@ -48,17 +74,7 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
             }
         }
     }
-    inner class MarsViewHolder(view:View): BaseViewHolder(view){
-        override fun bind(data:Data){
-            if(layoutPosition!=RecyclerView.NO_POSITION){
-                ActivityRecyclerItemMarsBinding.bind(itemView).apply {
-                    marsImageView.setOnClickListener{
-                        onListItemClickListener.onItemClick(data)
-                    }
-                }
-            }
-        }
-    }
+
     inner class HeaderViewHolder(view:View):BaseViewHolder(view){
         override fun bind(data:Data){
             itemView.setOnClickListener {
