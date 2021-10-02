@@ -50,7 +50,25 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
                     marsImageView.setOnClickListener{ onListItemClickListener.onItemClick(data) }
                     addItemImageView.setOnClickListener{addItem()}
                     removeItemImageView.setOnClickListener{remove()}
+                    moveItemUp.setOnClickListener{moveItemUp()}
+                    moveItemDown.setOnClickListener{moveItemDown()}
                 }
+            }
+        }
+        private fun moveItemDown(){
+            layoutPosition.takeIf { it < data.size - 1 }?.also { currentPosition ->
+                data.removeAt(currentPosition).apply {
+                    data.add(currentPosition + 1, this)
+                }
+                notifyItemMoved(currentPosition, currentPosition + 1)
+            }
+        }
+        private fun moveItemUp() {
+            layoutPosition.takeIf { it > 1 }?.also { currentPosition ->
+                data.removeAt(currentPosition).apply {
+                    data.add(currentPosition - 1, this)
+                }
+                notifyItemMoved(currentPosition, currentPosition - 1)
             }
         }
         private fun addItem(){
