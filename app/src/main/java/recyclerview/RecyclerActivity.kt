@@ -9,7 +9,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.samitin.lessonmaterial.R
 
 class RecyclerActivity : AppCompatActivity() {
-
+    lateinit var itemTouchHelper: ItemTouchHelper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recycler)
@@ -26,10 +26,16 @@ class RecyclerActivity : AppCompatActivity() {
                 override fun onItemClick(data: Data) {
                     Toast.makeText(this@RecyclerActivity, data.someText, Toast.LENGTH_SHORT).show()
                 }
-            },data)
+            },data,
+            object : RecyclerActivityAdapter.OnStartDragListener{
+                override fun onStartDrag(viewHolder: RecyclerView.ViewHolder) {
+                    itemTouchHelper.startDrag(viewHolder)
+                }
+            })
         val fab:FloatingActionButton=findViewById(R.id.recyclerActivityFAB)
         recycler.adapter=adapter
         fab.setOnClickListener{adapter.appendItem()}
-        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(recycler)
+        itemTouchHelper= ItemTouchHelper(ItemTouchHelperCallback(adapter))
+        itemTouchHelper.attachToRecyclerView(recycler)
     }
 }
