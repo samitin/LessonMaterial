@@ -1,5 +1,6 @@
 package recyclerview
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +9,9 @@ import ru.samitin.lessonmaterial.R
 import ru.samitin.lessonmaterial.databinding.ActivityRecyclerItemEarthBinding
 import ru.samitin.lessonmaterial.databinding.ActivityRecyclerItemMarsBinding
 
-class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClickListener,private var data: MutableList<Pair<Data, Boolean>>):RecyclerView.Adapter<BaseViewHolder>() {
+class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClickListener,private var data: MutableList<Pair<Data, Boolean>>)
+    :RecyclerView.Adapter<BaseViewHolder>(),ItemTouchHelperAdapter {
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
@@ -43,7 +46,7 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
 
     private fun genereteItem()= Pair(Data("Mars",""),false)
 
-    inner class MarsViewHolder(view:View): BaseViewHolder(view){
+    inner class MarsViewHolder(view:View): BaseViewHolder(view),ItemTouchHelperViewHolder{
         override fun bind(data:Pair<Data, Boolean>){
             if(layoutPosition!=RecyclerView.NO_POSITION){
                 ActivityRecyclerItemMarsBinding.bind(itemView).apply {
@@ -87,6 +90,14 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
             data.removeAt(layoutPosition)
             notifyItemRemoved(layoutPosition)
         }
+
+        override fun onItemSelected() {
+           itemView.setBackgroundColor(Color.LTGRAY)
+        }
+
+        override fun onItemClear() {
+           itemView.setBackgroundColor(0)
+        }
     }
     inner class EarthViewHolder(view:View): BaseViewHolder(view){
         override fun bind(data:Pair<Data, Boolean>){
@@ -114,7 +125,19 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
         private const val TYPE_HEADER=2
     }
     interface OnListItemClickListener {
-        fun onItemClick(data:Data)
+        fun onItemClick(data: Data)
+    }
+
+    override fun onItemMove(fromPosition: Int, toPosiyion: Int) {
+       data.removeAt(fromPosition).apply {
+           data.add(if(toPosiyion>fromPosition)toPosiyion-1 else toPosiyion,this)
+       }
+        notifyItemMoved(fromPosition,toPosiyion)
+    }
+
+    override fun onItemDismiss(position: Int) {
+        data.removeAt(position)
+        notifyItemRemoved(position)
     }
 
 

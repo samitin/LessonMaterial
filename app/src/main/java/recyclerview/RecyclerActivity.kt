@@ -3,6 +3,7 @@ package recyclerview
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import ru.samitin.lessonmaterial.R
@@ -29,5 +30,6 @@ class RecyclerActivity : AppCompatActivity() {
         val fab:FloatingActionButton=findViewById(R.id.recyclerActivityFAB)
         recycler.adapter=adapter
         fab.setOnClickListener{adapter.appendItem()}
+        ItemTouchHelper(ItemTouchHelperCallback(adapter)).attachToRecyclerView(recycler)
     }
 }
