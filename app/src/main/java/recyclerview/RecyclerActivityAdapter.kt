@@ -31,7 +31,18 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
      holder.bind(data[position])
     }
-
+    override fun onBindViewHolder(
+            holder: BaseViewHolder,
+            position: Int,
+            payloads: MutableList<Any>
+    ) {
+        if (payloads.isEmpty())
+            super.onBindViewHolder(holder, position, payloads)
+        else {
+            if (payloads.any { it is Pair<*, *> })
+                ActivityRecyclerItemMarsBinding.bind(holder.itemView).marsTextView.text = data[position].first.someText
+        }
+    }
     override fun getItemCount()=data.size
 
     override fun getItemViewType(position: Int): Int {
@@ -122,9 +133,11 @@ class RecyclerActivityAdapter(private var onListItemClickListener:OnListItemClic
     }
 
     inner class HeaderViewHolder(view:View):BaseViewHolder(view){
-        override fun bind(data:Pair<Data, Boolean>){
+        override fun bind(dataItem:Pair<Data, Boolean>){
             itemView.setOnClickListener {
-                onListItemClickListener.onItemClick(data.first)
+               // onListItemClickListener.onItemClick(data.first)
+                data[1] = Pair(Data("Jupiter",""), false)
+                notifyItemChanged(1,Pair(Data(","),false))
             }
         }
     }
