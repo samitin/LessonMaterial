@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dz6.NotesActivity
 import recyclerview.RecyclerActivity
 import ru.samitin.lessonmaterial.R
 import ru.samitin.lessonmaterial.databinding.BottomNavigationLayoutBinding
@@ -20,11 +21,7 @@ class BottomNavigationDraverFragment : BottomSheetDialogFragment() {
     val binding: BottomNavigationLayoutBinding
         get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = BottomNavigationLayoutBinding.inflate(inflater)
         return binding.root
     }
@@ -46,6 +43,11 @@ class BottomNavigationDraverFragment : BottomSheetDialogFragment() {
                 R.id.navigation_three ->{
                     activity?.let {
                         startActivity(Intent(it,RecyclerActivity::class.java))
+                    }
+                }
+                R.id.navigation_four ->{
+                    activity?.let {
+                        startActivity(Intent(it, NotesActivity::class.java))
                     }
                 }
             }

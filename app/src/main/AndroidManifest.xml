@@ -17,6 +17,7 @@
         <activity android:name=".ui.api.AnimationsActivity" />
 
         <activity android:name=".ui.api.ApiActivity" />
+        <activity android:name="dz6.NotesActivity"/>
         <activity
             android:name=".ui.api.ApiBottomActivity"
             android:exported="true" />

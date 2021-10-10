@@ -12,5 +12,9 @@
             android:id="@+id/navigation_three"
             android:icon="@drawable/ic_wikipedia"
             android:title="На экран 3" />
+        <item
+            android:id="@+id/navigation_four"
+            android:icon="@drawable/ic_baseline_notes_24"
+            android:title="Список дел" />
     </group>
 </menu>
