@@ -27,11 +27,7 @@ class EarchFragment :Fragment() {
     private val viewModel : OneBigFatViewModel by lazy {
         ViewModelProvider(this).get(OneBigFatViewModel::class.java)
     }
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentEarchBinding.inflate(inflater,container,false)
         return binding.root
     }
